@@ -7,6 +7,18 @@ NOTICE: This module will 'rm -rf' the webapps directory of the configured
 tomcat instance, and it will also write a setenv.sh file to the configured
 tomcat bin directory.
 
+### Usage
+
+Install default version of asgard.war in /opt/tomcat with 1GB RAM:
+  
+    class { asgard: }
+
+Install 1.1.2 version of asgard.war in /opt/tomcat with 2GB RAM:
+
+    class { asgard: 
+      version     => '1.1.2',
+      java_memory => 2048,
+    }
 
 
 License

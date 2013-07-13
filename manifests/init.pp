@@ -1,36 +1,50 @@
 # == Class: asgard
 #
-# Full description of class asgard here.
+# Module for installing Asgard in an existing tomcat instance.
+#
+# NOTICE: This module will 'rm -rf' the webapps directory of the configured
+# tomcat instance, and it will also write a setenv.sh file to the configured
+# tomcat bin directory.
 #
 # === Parameters
 #
-# Document parameters here.
+# [*version*]
+#   Asgard version
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# [*tomcat_dir*]
+#   Tomcat installation directory (defaults to /opt/tomcat) 
+#
+# [*java_memory*]
+#   Amount of memory to allocate for tomcat (defaults to 1024)
 #
 # === Examples
 #
-#  class { asgard:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
+#  Install default version of asgard.war in /opt/tomcat with 1GB RAM:
+#  
+#  class { asgard: }
+#
+#  Install 1.1.2 version of asgard.war in /opt/tomcat with 2GB RAM:
+#
+#  class { asgard: 
+#    version     => '1.1.2',
+#    java_memory => 2048,
 #  }
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Nicholas Whittier imperialwicket@gmail.com
 #
 # === Copyright
 #
-# Copyright 2013 Your name here, unless otherwise noted.
+# Copyright 2013 Nicholas Whittier.
 #
 class asgard (
   version = '1.2',
   tomcat_dir = '/opt/tomcat',
+  java_memory = 1024,
 ) {
   anchor { "${module_name}::begin": } ->
   class {"${module_name}::install": } ->
   class {"${module_name}::config": } ~>
-  class {"${module_name}::service": } ~>
   anchor { "${module_name}::end": }
 }

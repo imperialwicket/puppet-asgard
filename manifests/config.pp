@@ -13,10 +13,19 @@ class asgard::config() {
     mode    => '0644',
     content => template('asgard/server.xml.erb'),
   }
+  file { "${asgard::tomcat_dir}/bin":
+    ensure => directory,
+    mode   => '0755',
+  }
   file { "${asgard::tomcat_dir}/bin/setenv.sh":
     ensure  => present,
+    notify  => Service['tomcat7'],
     mode    => '0755',
     content => template('asgard/setenv.sh.erb'),
+    require => [
+      File["${asgard::tomcat_dir}/bin"],
+      File["${asgard::tomcat_dir}/conf/server.xml"],
+    ],
   }
 }
 

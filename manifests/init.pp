@@ -39,9 +39,9 @@
 # Copyright 2013 Nicholas Whittier.
 #
 class asgard (
-  version = '1.2',
-  tomcat_dir = '/opt/tomcat',
-  java_memory = 1024,
+  $version = '1.2',
+  $tomcat_dir = '/opt/tomcat',
+  $java_memory = 1024,
 ) {
   anchor { "${module_name}::begin": } ->
   class {"${module_name}::install": } ->

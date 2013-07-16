@@ -11,11 +11,11 @@ tomcat bin directory.
 
 Install default version of asgard.war in /opt/tomcat with 1GB RAM:
   
-    class { asgard: }
+    class { 'asgard': }
 
 Install 1.1.2 version of asgard.war in /opt/tomcat with 2GB RAM:
 
-    class { asgard: 
+    class { 'asgard': 
       version     => '1.1.2',
       java_memory => 2048,
     }

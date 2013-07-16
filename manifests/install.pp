@@ -9,10 +9,10 @@ class asgard::install {
       cwd  => "$asgard::tomcat_dir}/webapps",
       path => [ '/bin', '/usr/bin' ];
     'wget asgard':
-      cmd  => "wget https://github.com/Netflix/asgard/releases/download/asgard-${asgard::version}/asgard.war",
-      cwd  => "$asgard::tomcat_dir}/webapps",
-      path => [ '/bin', '/usr/bin' ],
-      require => Exec['rm -rf *'];
+      command  => "wget https://github.com/Netflix/asgard/releases/download/asgard-${asgard::version}/asgard.war",
+      cwd      => "$asgard::tomcat_dir}/webapps",
+      path     => [ '/bin', '/usr/bin' ],
+      require  => Exec['rm -rf *'];
   }
     
 }

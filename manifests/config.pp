@@ -14,7 +14,7 @@ class asgard::config() {
     content => template('asgard/server.xml.erb'),
   }
   file { "${asgard::tomcat_dir}/bin/setenv.sh":
-    ensure  => file,
+    ensure  => present,
     mode    => '0755',
     content => template('asgard/setenv.sh.erb'),
   }
